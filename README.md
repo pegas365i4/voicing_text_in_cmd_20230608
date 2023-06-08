@@ -41,5 +41,5 @@ powershell -Command "$text = Get-Content -Path 'text.txt' -Encoding UTF8; (New-O
 
 ## Файлы для скачивания:
 Эти файлы относятся к п.3:
-1. Сначала вставляете необходимый текст в text.txt
-2. Запускаете 3voicing_text_in_cmd_20230608.bat и текст озвучивается.
+1. Сначала вставляете необходимый текст в `text.txt`
+2. Запускаете `3voicing_text_in_cmd_20230608.bat` и текст озвучивается.
