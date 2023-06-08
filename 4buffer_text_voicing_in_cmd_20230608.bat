@@ -1,0 +1,1 @@
+powershell -Command "$text = Get-Clipboard -Format Text; (New-Object -ComObject SAPI.SpVoice).Speak($text)"
