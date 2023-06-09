@@ -1,0 +1,1 @@
+powershell -Command "$text = Get-Clipboard -Format Text; $voice = New-Object -ComObject SAPI.SpVoice; $voice.Rate = 10; $voice.Voice = $voice.GetVoices().Item(0); $stream = New-Object -ComObject SAPI.SpFileStream; $stream.Open('output.wav', 3, $null); $voice.AudioOutputStream = $stream; $voice.Speak($text); $stream.Close()"
