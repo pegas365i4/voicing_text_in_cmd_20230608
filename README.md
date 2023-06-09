@@ -75,3 +75,19 @@ powershell -Command "$text = Get-Clipboard -Format Text; $voice = New-Object -Co
 5. `$voice.Speak($text)`: Произносит текст, сохраненный в переменной `$text`, используя выбранный голос и настроенную скорость речи.
 
 Таким образом, данный .bat файл читает текст из буфера обмена и произносит его с использованием выбранного голоса и скорости речи.
+
+### 4.2. Как сохранить в аудио файл wav
+Чтобы сохранить озвученный текст в аудиофайл, вы можете использовать PowerShell и SAPI.SpVoice с помощью `SPEncode` для сохранения в WAV-формате. Вот пример команды, которая озвучивает текст и сохраняет его в аудиофайл:
+```bat
+powershell -Command "$text = Get-Clipboard -Format Text; $voice = New-Object -ComObject SAPI.SpVoice; $voice.Rate = 10; $voice.Voice = $voice.GetVoices().Item(0); $stream = New-Object -ComObject SAPI.SpFileStream; $stream.Open('output.wav', 3, $null); $voice.AudioOutputStream = $stream; $voice.Speak($text); $stream.Close()"
+```
+В этом примере мы добавили несколько дополнительных строк для сохранения озвученного текста в файл `output.wav`. `$stream = New-Object -ComObject SAPI.SpFileStream; $stream.Open('output.wav', 3, $null);` создает объект `SAPI.SpFileStream` и открывает файл `output.wav` для записи. Затем мы присваиваем `AudioOutputStream` объекту `$voice` для указания, что результат озвучивания должен быть записан в файл `output.wav`. После выполнения озвучивания текста мы закрываем поток записи с помощью `$stream.Close()`.
+
+Выполните следующие действия, чтобы использовать эту команду:
+
+1. Скопируйте текст в буфер обмена (Ctrl + C).
+2. Откройте командную строку (cmd).
+3. Вставьте команду PowerShell в командную строку.
+4. Нажмите Enter.
+
+Команда озвучит текст, сохранит его в аудиофайл `output.wav` и закроет поток записи. Обратите внимание, что перед запуском этой команды убедитесь, что у вас есть права на запись в текущей рабочей директории, где будет создан аудиофайл.
